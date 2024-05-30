@@ -19,8 +19,11 @@ public:
     static QRect getActiveScreenWorkingArea();
     static QPoint screenToClient(QPoint p);
     static QRect screenToClient(QRect rect);
-    static QPoint GetCursorPosition();
+    static QPoint getCursorPosition();
+    static QColor getPixelColor();
     static QColor getPixelColor(int x, int y);
+    static QRect createRectangle(int x, int y, int x2, int y2);
+    static QRectF createRectangle(float x, float y, float x2, float y2);
     static QPointF snapPositionToDegree(QPointF pos, QPointF pos2, float degree, float startDegree);
     static QPointF calculateNewPosition(QPointF posOnClick, QPointF posCurrent, QSize size);
     static QRectF calculateNewRectangle(QPointF posOnClick, QPointF posCurrent, QSize size);

@@ -9,25 +9,41 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    capturebase.cpp \
     capturehelpers.cpp \
     helpers.cpp \
+    helpers/externalprogram.cpp \
+    helpers/native/windowInfo.cpp \
     main.cpp \
     mainleftmenu.cpp \
     mainwindow.cpp \
+    mathhelpers.cpp \
     menuitem.cpp \
     nativemethods_helpers.cpp \
     screenshot.cpp \
-    systemtrayicon.cpp
+    systemtrayicon.cpp \
+    taskmetadata.cpp \
+    tasksettings.cpp
 
 HEADERS += \
+    capturebase.h \
     capturehelpers.h \
+    enums.h \
     helpers.h \
+    helpers/enums.h \
+    helpers/externalprogram.h \
+    helpers/native/windowInfo.h \
     mainleftmenu.h \
     mainwindow.h \
+    mathhelpers.h \
     menuitem.h \
     nativemethods_helpers.h \
     screenshot.h \
-    systemtrayicon.h
+    systemtrayicon.h \
+    taskmetadata.h \
+    tasksettings.h \
+    uploaders/enums.h \
+    watchfoldersettings.h
 
 FORMS += \
     mainwindow.ui

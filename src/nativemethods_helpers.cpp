@@ -42,21 +42,10 @@ QString NativeMethods_Helpers::getWindowText(int handle)
     QString text;
     if(handle > 0)
     {
-        int length = GetWindowTextLength((HWND)IntToPtr(handle));
-        if(length > 0)
+        TCHAR processFullName[_MAX_PATH] = {0};
+        if(GetWindowText((HWND)IntToPtr(handle), processFullName, _MAX_PATH))
         {
-            LPWSTR pszMem = (LPWSTR) VirtualAlloc((LPVOID) NULL,
-                                                  (DWORD) (length + 1), MEM_COMMIT,
-                                                  PAGE_READWRITE);
-            if(GetWindowText((HWND)IntToPtr(handle), pszMem, length + 1))
-            {
-                text = QString::fromStdWString(pszMem);
-            }
-
-            if(VirtualFree(pszMem, length + 1, MEM_COMMIT))
-            {
-                qCritical() << __FUNCTION__ << "error:" << "VirtualFree";
-            }
+            text = QString::fromStdWString(processFullName);
         }
     }
     return text;

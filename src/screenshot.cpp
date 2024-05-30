@@ -2,6 +2,15 @@
 
 #include <QDebug>
 
+#ifdef Q_OS_WIN
+#include <Windows.h>
+#include <wingdi.h>
+#pragma comment(lib, "User32.lib")
+#pragma comment(lib, "Gdi32.lib")
+#else
+
+#endif
+
 #include "capturehelpers.h"
 #include "nativemethods_helpers.h"
 
@@ -72,25 +81,59 @@ QImage Screenshot::captureWindow(int wid)
 
 QImage Screenshot::captureActiveWindow()
 {
-    return QImage();
+    HWND hwnd = GetForegroundWindow();
+    return captureWindow(PtrToInt(hwnd));
 }
 
 QImage Screenshot::captureActiveMonitor()
 {
-    return QImage();
+    QRect bounds = CaptureHelpers::getActiveScreenBounds();
+    return captureRectangle(bounds);
 }
 
 QImage Screenshot::captureRectangleNative(const QRect &rect, bool captureCursor)
 {
-    return QImage();
+    HWND hwnd = GetDesktopWindow();
+    return captureRectangleNative(PtrToInt(hwnd), rect, captureCursor);
 }
 
-QImage Screenshot::captureRectangleNative(WId wid, const QRect &rect, bool captureCursor)
+QImage Screenshot::captureRectangleNative(int handle, const QRect &rect, bool captureCursor)
 {
-    return QImage();
-}
+    QImage image;
 
-QImage Screenshot::cpatureRectangleManaged(const QRect &rect)
-{
-    return QImage();
+    if (rect.width() == 0 || rect.height() == 0)
+    {
+        return image;
+    }
+
+    HDC hdcSrc = GetWindowDC((HWND)IntToPtr(handle));
+    HDC hdcDest = CreateCompatibleDC(hdcSrc);
+    HBITMAP hBitmap = CreateCompatibleBitmap(hdcSrc, rect.width(), rect.height());
+    HGDIOBJ hOld = SelectObject(hdcDest, hBitmap);
+    if(BitBlt(hdcDest, 0, 0, rect.width(), rect.height(), hdcSrc, rect.x(), rect.y(), SRCCOPY | CAPTUREBLT))
+    {
+
+        if (captureCursor)
+        {
+            tagCURSORINFO cursorInfo;
+            cursorInfo.cbSize = sizeof(tagCURSORINFO);
+            GetCursorInfo(&cursorInfo);
+            if(DrawIcon(hdcDest, cursorInfo.ptScreenPos.x, cursorInfo.ptScreenPos.y, cursorInfo.hCursor) == 0)
+            {
+                qCritical() << __FUNCTION__ << "error:" << GetLastError();
+            }
+        }
+    }
+    else
+    {
+        qCritical() << __FUNCTION__ << "error1:";
+    }
+
+    SelectObject(hdcDest, hOld);
+    DeleteDC(hdcDest);
+    ReleaseDC((HWND)IntToPtr(handle), hdcSrc);
+    image = QImage::fromHBITMAP(hBitmap);
+    DeleteObject(hBitmap);
+
+    return image;
 }

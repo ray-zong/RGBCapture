@@ -23,9 +23,7 @@ public:
 private:
     QImage captureRectangleNative(const QRect &rect, bool captureCursor = false);
 
-    QImage captureRectangleNative(WId wid, const QRect &rect, bool captureCursor = false);
-
-    QImage cpatureRectangleManaged(const QRect &rect);
+    QImage captureRectangleNative(int handle, const QRect &rect, bool captureCursor = false);
 
 signals:
 
