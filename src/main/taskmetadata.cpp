@@ -8,7 +8,6 @@ TaskMetadata::TaskMetadata(QImage &image, QObject *parent)
 
 TaskMetadata::TaskMetadata(QObject *parent)
 {
-
 }
 
 TaskMetadata::TaskMetadata(const TaskMetadata &other)

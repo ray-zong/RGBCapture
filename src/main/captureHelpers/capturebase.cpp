@@ -1,7 +1,17 @@
 #include "capturebase.h"
 
-#include "tasksettings.h"
-#include "taskmetadata.h"
+#include "main/tasksettings.h"
+#include "main/taskmetadata.h"
+#include "helpers/native/windowInfo.h"
+
+
+#ifdef Q_OS_WIN
+#include <Windows.h>
+#pragma comment(lib, "User32.lib")
+
+#else
+
+#endif
 
 #include <QTimer>
 #include <QDebug>
@@ -56,6 +66,32 @@ TaskMetadata CaptureBase::execute(TaskSettings *pTaskSettings)
 void CaptureBase::afterCapture(TaskMetadata &metadata, TaskSettings *pTaskSettings)
 {
 
+}
+
+TaskMetadata CaptureBase::createMetadata()
+{
+    return createMetadata(QRect(), "");
+}
+
+TaskMetadata CaptureBase::createMetadata(QRect insideRect)
+{
+    return createMetadata(insideRect, "explorer");
+}
+
+TaskMetadata CaptureBase::createMetadata(QRect insideRect, QString ignoreProcess)
+{
+    TaskMetadata metadata;
+
+    int handle = PtrToInt(GetForegroundWindow());
+    Helpers::WindowInfo windowInfo(handle);
+
+    if ((ignoreProcess.isEmpty() || windowInfo.m_strProcessName.trimmed() != ignoreProcess.trimmed())
+        && (insideRect.isEmpty() || windowInfo.m_windowRect.contains(insideRect)))
+    {
+        metadata.updateInfo(windowInfo);
+    }
+
+    return metadata;
 }
 
 void CaptureBase::captureInternal(TaskSettings *pTaskSettings, bool autoHideForm)

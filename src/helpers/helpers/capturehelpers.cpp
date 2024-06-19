@@ -10,7 +10,7 @@
 
 #endif
 
-#include "nativemethods_helpers.h"
+#include "helpers/native/nativemethods_helpers.h"
 #include "helpers.h"
 #include "mathhelpers.h"
 

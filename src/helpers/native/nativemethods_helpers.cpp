@@ -23,7 +23,7 @@
 
 #endif
 
-#include "helpers.h"
+#include "helpers/helpers/helpers.h"
 
 NativeMethods_Helpers::NativeMethods_Helpers(QObject *parent)
     : QObject{parent}

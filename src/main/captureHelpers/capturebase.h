@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-#include "taskmetadata.h"
+#include "main/taskmetadata.h"
 
 class TaskSettings;
 
@@ -22,6 +22,11 @@ public:
     void afterCapture(TaskMetadata &metadata, TaskSettings *pTaskSettings);
 
 signals:
+
+protected:
+    TaskMetadata createMetadata();
+    TaskMetadata createMetadata(QRect insideRect);
+    TaskMetadata createMetadata(QRect insideRect, QString ignoreProcess);
 
 private slots:
     void captureInternal(TaskSettings *pTaskSettings, bool autoHideForm);

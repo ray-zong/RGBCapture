@@ -7,7 +7,6 @@
 
 #include "systemtrayicon.h"
 #include "mainleftmenu.h"
-#include "capturehelpers.h"
 
 #ifdef Q_OS_WIN
 #include <Windows.h>

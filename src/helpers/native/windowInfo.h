@@ -9,7 +9,7 @@ namespace Helpers
 class WindowInfo
 {
 public:
-    WindowInfo();
+    WindowInfo(int handle);
     void setHandle(int handle);
 
     int m_nHandle;

@@ -332,12 +332,12 @@ enum ImagePreviewLocation // Localized ThumbnailTitleLocation
     Bottom
 };
 
-//enum RegionCaptureType
-//{
-//    Default,
-//    Light,
-//    Transparent
-//};
+enum RegionCaptureType
+{
+    RegionDefault,
+    RegionLight,
+    RegionTransparent
+};
 
 enum StartupState
 {

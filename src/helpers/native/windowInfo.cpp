@@ -22,10 +22,9 @@
 
 namespace Helpers
 {
-WindowInfo::WindowInfo()
-    : m_nHandle(0)
-    , m_bIsHandleCreated(false)
+WindowInfo::WindowInfo(int handle)
 {
+    setHandle(handle);
 }
 
 void WindowInfo::setHandle(int handle)

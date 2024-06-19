@@ -9,44 +9,68 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    capturebase.cpp \
-    capturehelpers.cpp \
-    helpers.cpp \
+    main/captureHelpers/captureactivemonitor.cpp \
+    main/captureHelpers/captureactivewindow.cpp \
+    main/captureHelpers/capturecustomregion.cpp \
+    main/captureHelpers/capturecustomwindow.cpp \
+    main/captureHelpers/capturefullscreen.cpp \
+    main/captureHelpers/capturelastregion.cpp \
+    main/captureHelpers/capturemonitor.cpp \
+    main/captureHelpers/captureregion.cpp \
+    main/captureHelpers/capturewindow.cpp \
+    main/main.cpp \
+    main/mainleftmenu.cpp \
+    main/mainwindow.cpp \
+    main/captureHelpers/capturebase.cpp \
+    main/systemtrayicon.cpp \
+    main/taskhelpers.cpp \
+    main/taskmetadata.cpp \
+    main/tasksettings.cpp \
+    main/menuitem.cpp \
+    helpers/helpers/capturehelpers.cpp \
+    helpers/helpers/helpers.cpp \
     helpers/externalprogram.cpp \
     helpers/native/windowInfo.cpp \
-    main.cpp \
-    mainleftmenu.cpp \
-    mainwindow.cpp \
-    mathhelpers.cpp \
-    menuitem.cpp \
-    nativemethods_helpers.cpp \
-    screenshot.cpp \
-    systemtrayicon.cpp \
-    taskmetadata.cpp \
-    tasksettings.cpp
+    helpers/helpers/mathhelpers.cpp \
+    helpers/native/nativemethods_helpers.cpp \
+    screenCapture/screenshot.cpp \
+
 
 HEADERS += \
-    capturebase.h \
-    capturehelpers.h \
-    enums.h \
-    helpers.h \
+    main/captureHelpers/captureactivemonitor.h \
+    main/captureHelpers/captureactivewindow.h \
+    main/captureHelpers/capturebase.h \
+    main/captureHelpers/capturecustomregion.h \
+    main/captureHelpers/capturecustomwindow.h \
+    main/captureHelpers/capturefullscreen.h \
+    main/captureHelpers/capturelastregion.h \
+    main/captureHelpers/capturemonitor.h \
+    main/captureHelpers/captureregion.h \
+    main/captureHelpers/capturewindow.h \
+    main/enums.h \
+    main/mainleftmenu.h \
+    main/mainwindow.h \
+    main/menuitem.h \
+    main/systemtrayicon.h \
+    main/taskhelpers.h \
+    main/taskmetadata.h \
+    main/tasksettings.h \
+    main/watchfoldersettings.h \
     helpers/enums.h \
     helpers/externalprogram.h \
+    helpers/helpers/capturehelpers.h \
+    helpers/helpers/helpers.h \
+    helpers/helpers/mathhelpers.h \
+    helpers/native/nativemethods_helpers.h \
     helpers/native/windowInfo.h \
-    mainleftmenu.h \
-    mainwindow.h \
-    mathhelpers.h \
-    menuitem.h \
-    nativemethods_helpers.h \
-    screenshot.h \
-    systemtrayicon.h \
-    taskmetadata.h \
-    tasksettings.h \
+    screenCapture/enums.h \
+    screenCapture/regioncaptureoptions.h \
+    screenCapture/screenshot.h \
     uploaders/enums.h \
-    watchfoldersettings.h
+
 
 FORMS += \
-    mainwindow.ui
+    main/mainwindow.ui
 
 TRANSLATIONS += \
     RGBCapture_zh_CN.ts

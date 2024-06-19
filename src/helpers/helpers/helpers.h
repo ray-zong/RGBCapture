@@ -17,10 +17,18 @@ public:
     const QString Base56 = "23456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz"; // A variant, Base56, excludes 1 (one) and o (lowercase o) compared to Base 58.
 
 
-    static bool isWindowsVistaOrGreater();
-    static bool isWindows10OrGreater(int build = -1);
+    static bool isWindowsXP();
+    static bool isWindowsXPOrGreater();
     static bool isWindowsVista();
+    static bool isWindowsVistaOrGreater();
     static bool isWindows7();
+    static bool isWindows7OrGreater();
+    static bool isWindows8();
+    static bool isWindows8OrGreater();
+    static bool isWindows10OrGreater(int build = -1);
+    static bool isWindows11OrGreater(int build = -1);
+
+
 };
 
 #endif // HELPERS_H

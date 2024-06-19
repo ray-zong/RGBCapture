@@ -5,6 +5,7 @@ TaskSettingsImage TaskSettings::m_sImageSettings;
 TaskSettingsCapture TaskSettings::m_sCaptureSettings;
 TaskSettingsUpload TaskSettings::m_sUploadSettings;
 TaskSettingsTools TaskSettings::m_sToolsSettings;
+TaskSettingsAdvanced TaskSettings::m_sAdvancedSettings;
 
 TaskSettings::TaskSettings(QObject *parent)
     : QObject{parent}
@@ -56,6 +57,11 @@ TaskSettingsGeneral &TaskSettings::getGeneralSettings()
 TaskSettingsCapture &TaskSettings::getCaptureSettings()
 {
     return m_sCaptureSettings;
+}
+
+TaskSettingsAdvanced &TaskSettings::getAdvancedSettings()
+{
+    return m_sAdvancedSettings;
 }
 
 QString TaskSettings::toString()

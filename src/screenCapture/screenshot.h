@@ -12,13 +12,39 @@ public:
 
     QImage captureRectangle(QRect rect);
 
-    QImage captureFullScreen();
+    QImage captureFullscreen();
 
     QImage captureWindow(int wid);
 
     QImage captureActiveWindow();
 
     QImage captureActiveMonitor();
+
+    QImage captureWindowTransparent(int handle);
+
+    QImage captureActiveWindowTransparent();
+
+    QImage createTransparentImage(QImage whiteBackground, QImage blackBackground);
+
+    void trimShadow(QImage image);
+
+    void setCaptureCursor(bool captureCurosr);
+    bool getCaptureCursor();
+
+    void setCaptureClientArea(bool captureClientArea);
+    bool getCaptureClientArea();
+
+    void setRemoveOutsideScreenArea(bool removeOutsideScreenArea);
+    bool getRemoveOutsideScreenArea();
+
+    void setCaptureShadow(bool captureShadow);
+    bool getCaptureShadow();
+
+    void setShadowOffset(int shadowOffset);
+    int getShadowOffset();
+
+    void setAutoHideTaskbar(bool autoHideTaskbar);
+    bool getAutoHideTaskbar();
 
 private:
     QImage captureRectangleNative(const QRect &rect, bool captureCursor = false);
